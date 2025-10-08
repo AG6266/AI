@@ -1,0 +1,30 @@
+Slip 25
+Q1: Build a bot which provides all the information related to you in college
+info={'name':'Rajendra','roll':'12345','dept':'CS'}
+q=input('Ask: ').lower()
+print(info.get(q,'No information'))
+
+Q2: Write a Python program to solve 8-puzzle problem.
+from collections import deque
+def bfs(start,goal):
+q=deque([start]); visited={start:None}
+while q:
+s=q.popleft()
+if s==goal:
+path=[]; cur=s
+while cur:
+path.append(cur); cur=visited[cur]
+return list(reversed(path))
+i=s.index(0)
+x,y=divmod(i,3)
+for dx,dy in [(-1,0),(1,0),(0,-1),(0,1)]:
+nx,ny=x+dx,y+dy
+if 0<=nx<3 and 0<=ny<3:
+lst=list(s); lst[i],lst[nx*3+ny]=lst[nx*3+ny],lst[i]
+ns=tuple(lst)
+if ns not in visited:
+visited[ns]=s; q.append(ns)
+return None
+start=(1,2,3,4,5,6,7,8,0)
+goal=(1,2,3,4,5,6,7,0,8)
+print(bfs(start,goal))
