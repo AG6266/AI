@@ -1,0 +1,26 @@
+Slip 8
+Q1: Write a Python program to accept a string. Find and print the number of upper case alphabets and lower case
+alphabets.
+s=input('Enter: ')
+print('Upper:', sum(1 for c in s if c.isupper()))
+print('Lower:', sum(1 for c in s if c.islower()))
+
+Q2: Write a Python program to solve tic-tac-toe problem.
+# simple random tic-tac-toe
+import random
+board=[' ']*9
+lines=[(0,1,2),(3,4,5),(6,7,8),(0,3,6),(1,4,7),(2,5,8),(0,4,8),(2,4,6)]
+def winner(b):
+for a,b2,c in lines:
+if b[a]==b[b2]==b[c] and b[a] != ' ':
+return b[a]
+if ' ' not in b: return 'D'
+return None
+turn=0
+while True:
+mv=random.choice([i for i in range(9) if board[i]==' '])
+board[mv]='X' if turn==0 else 'O'
+w=winner(board)
+if w:
+print('Winner:',w); break
+turn=1-turn
