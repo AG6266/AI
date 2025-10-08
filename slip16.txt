@@ -1,0 +1,25 @@
+Slip 16
+Q1: Write a Program to Implement Tower of Hanoi using Python
+def hanoi(n,src,aux,dst):
+if n==1:
+print(src,'->',dst); return
+hanoi(n-1,src,dst,aux)
+print(src,'->',dst)
+hanoi(n-1,aux,src,dst)
+hanoi(3,'A','B','C')
+
+Q2: Write a Python program to solve tic-tac-toe problem.
+board=[' ']*9
+lines=[(0,1,2),(3,4,5),(6,7,8),(0,3,6),(1,4,7),(2,5,8),(0,4,8),(2,4,6)]
+def winner(b):
+for a,b2,c in lines:
+if b[a]==b[b2]==b[c] and b[a] != ' ':
+return b[a]
+if ' ' not in b: return 'D'
+return None
+while True:
+mv=int(input('Move 0-8: '))
+if board[mv]==' ':
+board[mv]='X'
+w=winner(board)
+if w: print('Winner',w); break
