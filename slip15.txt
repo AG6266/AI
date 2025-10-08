@@ -1,0 +1,38 @@
+Slip 15
+Q1: Write a Program to Implement Monkey Banana Problem using Python
+from collections import deque
+def monkey_banana():
+start=('floor','box',False)
+q=deque([start]); visited={start:None}
+while q:
+s=q.popleft()
+monkey,box,got=s
+if got:
+path=[]; cur=s
+while cur:
+path.append(cur); cur=visited[cur]
+return list(reversed(path))
+# simplified transitions
+nxt=( 'top', box, True )
+if nxt not in visited:
+visited[nxt]=s; q.append(nxt)
+return None
+print(monkey_banana())
+
+
+Q2: Write a program to implement Iterative Deepening DFS algorithm. [ Goal Node =G ]
+graph={'S':['A','B'],'A':['C','D'],'B':['E'],'C':['G'],'D':[],'E':[],'G':[]}
+def dls(node,goal,limit):
+if node==goal: return [node]
+if limit<=0: return None
+for v in graph.get(node,[]):
+res=dls(v,goal,limit-1)
+if res: return [node]+res
+return None
+def iddfs(start,goal):
+depth=0
+while True:
+res=dls(start,goal,depth)
+if res: return res
+depth+=1
+print(iddfs('S','G'))
