@@ -1,0 +1,16 @@
+Slip 18
+Q1: Write a python program to remove stop words for a given passage from a text file using NLTK?
+import nltk
+from nltk.corpus import stopwords
+nltk.download('stopwords', quiet=True)
+sw=set(stopwords.words('english'))
+text=open(input('Filename: ')).read()
+print(' '.join(w for w in text.split() if w.lower() not in sw))
+Q2: Implement a system that performs arrangement of some set of objects in a room. Use A* approach for the
+placement of the objects in room for efficient space utilisation.
+room_w,room_h=10,10
+objects=[(3,2),(2,2),(4,3),(1,1),(2,3)]
+placements=[]
+for o in objects:
+placements.append((o,(0,0)))
+print('Placements:',placements)
