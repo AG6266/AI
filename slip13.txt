@@ -1,0 +1,27 @@
+Slip 13
+Q1: Write a Python program to implement Mini-Max Algorithm.
+def minimax(node,depth,maximizing):
+if depth==0 or isinstance(node,int): return node
+if maximizing:
+best=-10**9
+for c in node: best=max(best,minimax(c,depth-1,False))
+return best
+else:
+best=10**9
+for c in node: best=min(best,minimax(c,depth-1,True))
+return best
+print(minimax([[3,5],[2,9] ],2,True))
+
+
+Q2: Write a Python program to simulate 8-Queens problem.
+def solve_n(n):
+res=[]
+def dfs(r,cols,d1,d2):
+if r==n: res.append(cols[:]); return
+for c in range(n):
+if c in cols or (r+c) in d1 or (r-c) in d2: continue
+cols.append(c); d1.add(r+c); d2.add(r-c)
+dfs(r+1,cols,d1,d2)
+cols.pop(); d1.remove(r+c); d2.remove(r-c)
+dfs(0,[],set(),set()); return res
+print(len(solve_n(8)))
