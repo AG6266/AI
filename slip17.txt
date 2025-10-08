@@ -1,0 +1,30 @@
+Slip 17
+Q1: Python program that demonstrates the hill climbing algorithm to find the maximum of a mathematical function.
+import random
+def hill_climb(function,x_start,step,max_iter):
+x=x_start
+for _ in range(max_iter):
+n=x+random.uniform(-step,step)
+if function(n)>function(x): x=n
+return x,function(x)
+f=lambda x:-x**2+4*x
+print(hill_climb(f,random.uniform(0,4),0.1,1000))
+
+Q2: Write a Python program to implement A* algorithm. Refer the following graph as an Input for the program.[
+Start vertex is A and Goal Vertex is G]
+import heapq
+def astar(start,goal,graph,heur):
+open=[(heur[start],0,start,[])]
+seen={start:0}
+while open:
+f,g,u,path=heapq.heappop(open)
+if u==goal: return path+[u]
+for v,w in graph.get(u,[]):
+ng=g+w
+if v not in seen or ng<seen[v]:
+seen[v]=ng
+heapq.heappush(open,(ng+heur[v],ng,v,path+[u]))
+return None
+graph={'A':[('B',1),('C',4)],'B':[('D',2)],'C':[('E',2)],'D':[('G',5)],'E':[('G',3)],'G':[]}
+heur={'A':7,'B':6,'C':5,'D':2,'E':1,'G':0}
+print(astar('A','G',graph,heur))
