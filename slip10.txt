@@ -1,0 +1,18 @@
+Slip 10
+Q1: Write Python program to implement crypt arithmetic problem TWO+TWO=FOUR
+import itertools
+letters=list(set('T W O F U R'.split()))
+for perm in itertools.permutations('0123456789', len(letters)):
+m=dict(zip(letters,perm))
+if m['T']=='0' or m['F']=='0': continue
+def val(s): return int(''.join(m[c] for c in s))
+if val('TWO')+val('TWO')==val('FOUR'):
+print(m, val('TWO'), val('FOUR'))
+break
+
+Q2: Write a Python program to implement Simple Chatbot.
+responses={'hi':'Hello','bye':'Goodbye'}
+while True:
+u=input().lower()
+if u in ('exit','quit'): break
+print(responses.get(u,'I do not understand'))
