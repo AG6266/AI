@@ -1,0 +1,19 @@
+Slip 20
+Q1: Build a bot which provides all the information related to you in college
+info={'name':'Your Name','roll':'123','dept':'CS'}
+q=input('Query: ').lower()
+print(info.get(q,'No info'))
+
+
+Q2: Write a Python program to implement Mini-Max Algorithm.
+def minimax(node,depth,maximizing):
+if depth==0 or isinstance(node,int): return node
+if maximizing:
+best=-10**9
+for c in node: best=max(best,minimax(c,depth-1,False))
+return best
+else:
+best=10**9
+for c in node: best=min(best,minimax(c,depth-1,True))
+return best
+print(minimax([[3,5],[2,9]],2,True))
