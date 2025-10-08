@@ -1,0 +1,26 @@
+Slip 22
+Q1: Write a Program to Implement Alpha-Beta Pruning using Python
+import math
+def alphabeta(node,depth,alpha,beta,maximizing):
+if depth==0 or isinstance(node,int): return node
+if maximizing:
+v=-math.inf
+for child in node:
+v=max(v,alphabeta(child,depth-1,alpha,beta,False))
+alpha=max(alpha,v)
+if alpha>=beta: break
+return v
+else:
+v=math.inf
+for child in node:
+v=min(v,alphabeta(child,depth-1,alpha,beta,True))
+beta=min(beta,v)
+if alpha>=beta: break
+return v
+print(alphabeta([[3,5],[6,9]],2,-math.inf,math.inf,True))
+Q2: Write a Python program to implement Simple Chatbot
+resp={'hi':'hello','name':'bot'}
+while True:
+u=input().lower()
+if u in ('exit','quit'): break
+print(resp.get(u,'I do not understand'))
