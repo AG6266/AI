@@ -1,0 +1,25 @@
+Slip 2
+Q1: Write a python program to generate Calendar for the given month and year?
+
+import calendar
+y=int(input('Year: '))
+m=int(input('Month: '))
+print(calendar.month(y,m))
+
+Q2: Write a Python program to implement Depth First Search algorithm. [Initial node=1,Goal node=7]
+
+graph = {1:[2,3],2:[4,5],3:[6,7],4:[],5:[],6:[],7:[]}
+def dfs(graph,start,goal):
+visited=set()
+stack=[start]
+while stack:
+node=stack.pop()
+if node not in visited:
+print(node, end=' ')
+if node==goal:
+break
+visited.add(node)
+for nbr in reversed(graph.get(node,[])):
+if nbr not in visited:
+stack.append(nbr)
+dfs(graph,1,7)
