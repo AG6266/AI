@@ -1,0 +1,21 @@
+Slip 14
+Q1: Write a python program to sort the sentence in alphabetical order?
+s=input('Enter sentence: ')
+print(' '.join(sorted(s.split(), key=lambda x:x.lower())))
+
+
+Q2: Write a Python program to simulate n-Queens problem.
+n=int(input('n: '))
+print('Solutions count:')
+# reuse solve
+def solve(n):
+res=[]
+def dfs(r,cols,d1,d2):
+if r==n: res.append(cols[:]); return
+for c in range(n):
+if c in cols or (r+c) in d1 or (r-c) in d2: continue
+cols.append(c); d1.add(r+c); d2.add(r-c)
+dfs(r+1,cols,d1,d2)
+cols.pop(); d1.remove(r+c); d2.remove(r-c)
+dfs(0,[],set(),set()); return res
+print(len(solve(n)))
