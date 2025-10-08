@@ -1,6 +1,8 @@
 Slip 1
 Q1: Python program that demonstrates the hill climbing algorithm to find the maximum of a mathematical function
 (e.g., f(x) = -x^2 + 4x)
+
+
 import random
 def hill_climb(function, x_start, step_size, max_iter):
 x = x_start
@@ -12,6 +14,8 @@ return x, function(x)
 f = lambda x: -x**2 + 4*x
 best_x, best_y = hill_climb(f, random.uniform(0, 4), 0.1, 1000)
 print(f"Best x: {best_x:.4f}, f(x): {best_y:.4f}")
+
+
 Q2: Write a Python program to implement Depth First Search algorithm. Refer the following graph as an Input for
 the program. [Initial node=1,Goal node=8]
 graph = {
