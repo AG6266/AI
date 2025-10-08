@@ -1,0 +1,47 @@
+Slip 7
+Q1: Write a python program implement tic-tac-toe using alpha beeta pruning
+import math
+def winner(b):
+lines=[(0,1,2),(3,4,5),(6,7,8),(0,3,6),(1,4,7),(2,5,8),(0,4,8),(2,4,6)]
+for a,b2,c in lines:
+if b[a]==b[b2]==b[c] and b[a] != ' ':
+return b[a]
+if ' ' not in b: return 'D'
+return None
+def alphabeta(board,depth,alpha,beta,maximizing,player):
+w=winner(board)
+if w or depth==0:
+if w==player: return 1
+if w==('O' if player=='X' else 'X'): return -1
+return 0
+if maximizing:
+v=-math.inf
+for i in range(9):
+if board[i]==' ':
+board[i]=player
+v=max(v, alphabeta(board,depth-1,alpha,beta,False,player))
+board[i]=' '
+alpha=max(alpha,v)
+if alpha>=beta: break
+return v
+else:
+v=math.inf
+opp='O' if player=='X' else 'X'
+for i in range(9):
+if board[i]==' ':
+board[i]=opp
+v=min(v, alphabeta(board,depth-1,alpha,beta,True,player))
+board[i]=' '
+beta=min(beta,v)
+if alpha>=beta: break
+return v
+board=[' ']*9
+print('Best value for X:', alphabeta(board,4,-math.inf,math.inf,True,'X'))
+
+
+Q2: Write a Python program to implement Simple Chatbot.
+responses={'hi':'hello','hello':'hi','how are you':'fine'}
+while True:
+u=input().lower()
+if u in ('exit','quit','bye'): break
+print(responses.get(u,'I do not understand'))
