@@ -1,0 +1,23 @@
+Slip 5
+Q1: Write a python program to implement Lemmatization using NLTK
+import nltk
+from nltk.stem import WordNetLemmatizer
+nltk.download('wordnet', quiet=True)
+lem=WordNetLemmatizer()
+s=input('Text: ')
+print(' '.join(lem.lemmatize(w) for w in s.split()))
+
+Q2: Write a Python program to implement Breadth First Search algorithm. [Initial node=1,Goal node=8]
+from collections import deque
+graph={1:[2,3],2:[4,5],3:[6],4:[],5:[],6:[7,8],7:[],8:[]}
+q=deque([1]); vis={1}; parent={1:None}
+while q:
+u=q.popleft()
+if u==8:
+p=[]; cur=8
+while cur:
+p.append(cur); cur=parent[cur]
+print('Path:',list(reversed(p))); break
+for v in graph.get(u,[]):
+if v not in vis:
+vis.add(v); parent[v]=u; q.append(v)
