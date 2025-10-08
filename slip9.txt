@@ -1,0 +1,48 @@
+Slip 9
+Q1: Write python program to solve 8 puzzle problem using A* algorithm
+import heapq
+def astar(start,goal):
+def h(s):
+return sum(abs((s.index(i)%3)-(goal.index(i)%3))+abs((s.index(i)//3)-(goal.index(i)//3)) for i in range(open=[(h(start),0,start,[])]
+seen={start:0}
+while open:
+f,g,s,path=heapq.heappop(open)
+if s==goal: return path+[s]
+zero=s.index(0)
+x,y=divmod(zero,3)
+for dx,dy in [(-1,0),(1,0),(0,-1),(0,1)]:
+nx,ny=x+dx,y+dy
+if 0<=nx<3 and 0<=ny<3:
+lst=list(s)
+lst[zero],lst[nx*3+ny]=lst[nx*3+ny],lst[zero]
+ns=tuple(lst)
+ng=g+1
+if ns not in seen or ng<seen[ns]:
+seen[ns]=ng
+heapq.heappush(open,(ng+h(ns),ng,ns,path+[s]))
+return None
+start=(1,2,3,4,5,6,7,8,0)
+goal=(1,2,3,4,5,6,7,0,8)
+print(astar(start,goal))
+
+
+Q2: Write a Python program to solve water jug problem. 2 jugs with capacity 5 gallon and 7 gallon are given with
+unlimited water supply respectively. The target to achieve is 4 gallon of water in second jug.
+from collections import deque
+def water_jug(cap1,cap2,target):
+start=(0,0); q=deque([start]); visited={start:None}
+while q:
+a,b=q.popleft()
+if b==target:
+path=[]; cur=(a,b)
+while cur:
+path.append(cur); cur=visited[cur]
+return list(reversed(path))
+states=[(cap1,b),(a,cap2),(0,b),(a,0)]
+pour=min(a,cap2-b); states.append((a-pour,b+pour))
+pour=min(b,cap1-a); states.append((a+pour,b-pour))
+for s in states:
+if s not in visited:
+visited[s]=(a,b); q.append(s)
+return None
+print(water_jug(5,7,4))
