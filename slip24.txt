@@ -1,0 +1,13 @@
+Slip 24
+Q1: Write a python program to sort the sentence in alphabetical order?
+s=input('Enter: ')
+print(' '.join(sorted(s.split(), key=lambda x:x.lower())))
+Q2: Write a Python program for the following Cryptarithmetic problems CROSS+ROADS = DANGER
+import itertools
+letters=list(set('C R O S A D N G E'.split()))
+for perm in itertools.permutations('0123456789', len(letters)):
+m=dict(zip(letters,perm))
+if m.get('C','0')=='0' or m.get('R','0')=='0': continue
+def val(word): return int(''.join(m[ch] for ch in word))
+if val('CROSS')+val('ROADS')==val('DANGER'):
+print(m); break
