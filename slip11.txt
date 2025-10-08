@@ -1,0 +1,38 @@
+Slip 11
+Q1: Write a python program using mean end analysis algorithmproblem of transforming a string of lowercase
+letters into another string.
+from collections import deque
+def transform(start,goal):
+q=deque([(start,[start])]); visited={start}
+while q:
+s,path=q.popleft()
+if s==goal: return path
+for i in range(len(s)):
+for c in 'abcdefghijklmnopqrstuvwxyz':
+ns=s[:i]+c+s[i+1:]
+if ns not in visited:
+visited.add(ns); q.append((ns,path+[ns]))
+return None
+print(transform('hit','cog'))
+
+
+Q2: Write a Python program to solve water jug problem. Two jugs with capacity 4 gallon and 3 gallon are given
+with unlimited water supply respectively. The target is to achieve 2 gallon of water in second jug.
+from collections import deque
+def water_jug(cap1,cap2,target):
+start=(0,0); q=deque([start]); visited={start:None}
+while q:
+a,b=q.popleft()
+if b==target:
+path=[]; cur=(a,b)
+while cur:
+path.append(cur); cur=visited[cur]
+print(list(reversed(path))); return
+states=[(cap1,b),(a,cap2),(0,b),(a,0)]
+pour=min(a,cap2-b); states.append((a-pour,b+pour))
+pour=min(b,cap1-a); states.append((a+pour,b-pour))
+for s in states:
+if s not in visited:
+visited[s]=(a,b); q.append(s)
+print('No solution')
+water_jug(4,3,2)
