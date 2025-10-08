@@ -1,0 +1,23 @@
+Slip 3
+Q1: Write a python program to remove punctuations from the given string?
+
+import string
+s=input('Enter string: ')
+print(s.translate(str.maketrans('','',string.punctuation)))
+
+Q2: Write a Python program to implement Depth First Search algorithm. [Initial node=2,Goal node=7]
+
+graph = {1:[2],2:[3,4],3:[5],4:[6],5:[7],6:[],7:[]}
+def dfs_rec(graph, node, goal, visited=None):
+if visited is None:
+visited=set()
+visited.add(node)
+print(node, end=' ')
+if node==goal:
+return True
+for v in graph.get(node,[]):
+if v not in visited:
+if dfs_rec(graph, v, goal, visited):
+return True
+return False
+dfs_rec(graph,2,7)
