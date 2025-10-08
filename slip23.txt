@@ -1,0 +1,21 @@
+Slip 23
+Q1: Write a Program to Implement Tower of Hanoi using Python.
+def hanoi(n,src,aux,dst):
+if n==1:
+print(src,'->',dst); return
+hanoi(n-1,src,dst,aux)
+print(src,'->',dst)
+hanoi(n-1,aux,src,dst)
+hanoi(3,'A','B','C')
+
+
+Q2: Write a Python program for the following Cryptarithmetic problems SEND + MORE = MONEY
+import itertools
+letters=list(set('S E N D M O R Y'.split()))
+for perm in itertools.permutations('0123456789', len(letters)):
+m=dict(zip(letters,perm))
+if m['S']=='0' or m['M']=='0': continue
+def val(s): return int(''.join(m[c] for c in s))
+if val('SEND')+val('MORE')==val('MONEY'):
+print(m, val('SEND'), val('MORE'), val('MONEY'))
+break
