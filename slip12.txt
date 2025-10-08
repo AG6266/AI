@@ -1,0 +1,16 @@
+Slip 12
+Q1: Write a python program to generate Calendar for the given month and year?.
+import calendar
+y=int(input('Year: ')); m=int(input('Month: ')); print(calendar.month(y,m))
+Q2: Write a Python program to simulate 4-Queens problem.
+def solve_n(n):
+res=[]
+def dfs(r,cols,d1,d2):
+if r==n: res.append(cols[:]); return
+for c in range(n):
+if c in cols or (r+c) in d1 or (r-c) in d2: continue
+cols.append(c); d1.add(r+c); d2.add(r-c)
+dfs(r+1,cols,d1,d2)
+cols.pop(); d1.remove(r+c); d2.remove(r-c)
+dfs(0,[],set(),set()); return res
+print(solve_n(4))
