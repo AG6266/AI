@@ -1,0 +1,16 @@
+Slip 21
+Q1: Write a python program to remove punctuations from the given string?
+import string
+s=input('Enter: ')
+print(''.join(ch for ch in s if ch not in string.punctuation))
+
+Q2: Write a Python program for the following Cryptarithmetic problems. GO + TO = OUT
+import itertools
+letters=list(set('G O T U'.split()))
+for perm in itertools.permutations('0123456789', len(letters)):
+m=dict(zip(letters,perm))
+if m['G']=='0' or m['T']=='0' or m['O']=='0': continue
+def val(s): return int(''.join(m[c] for c in s))
+if val('GO')+val('TO')==val('OUT'):
+print(m, val('GO'), val('TO'), val('OUT'))
+break
